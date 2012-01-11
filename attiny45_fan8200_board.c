@@ -11,29 +11,26 @@ void io_setup(void) {
 }
 
 void stop(void) {
- PORTB &= ~(1<<PB0 | 1<<PB3); //Disable motors 1 & 2
+ PORTB &= ~(1<<PB0 | 1<<PB1 | 1<<PB3 | 1<<PB4); //Disable motors 1 & 2
 }
 
 void forward(void) {
  stop();
- PORTB |= 1<<PB0 | 1<<PB1 | 1<<PB3 | 1<<PB4; //Motors 1 & 2 on and forward
+ PORTB |= 1<<PB0 | 1<<PB4; //Motors 1 & 2 on and forward
 }
 
 void reverse(void) {
  stop();
- PORTB &= ~(1<<PB1 | 1<<PB4); //Motors 1 & 2 backwards
- PORTB |= 1<<PB0 | 1<<PB3; //Motors 1 & 2 on
+ PORTB |= 1<<PB1 | 1<<PB3; //Motors 1 & 2 on and backwards
 }
 
 void right(void) {
  stop();
- PORTB &= ~(1<<PB1); //Motors 1 forwards
- PORTB |= 1<<PB0 | 1<<PB3 | 1<<PB4; //Motors 1 & 2 on, motor 2 backwards
+ PORTB |= 1<<PB1 | 1<<PB4; //Left forward, right backwards, turns right.
 }
 
 void left(void) {
  stop();
- PORTB &= ~(1<<PB4); //Motors 2 forwards
- PORTB |= 1<<PB0 | 1<<PB1 | 1<<PB3; //Motors 1 & 2 on, motor 1 backwards
+ PORTB |= 1<<PB0 | 1<<PB3; // Right forward, left backwards, turns left.
 }
 
